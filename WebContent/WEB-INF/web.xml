@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+	<display-name>SpringSecurity</display-name>	
+	<!-- 定义前端控制器 DispatcherServlet -->
+	<servlet>
+		<!-- 设置 Servlet 的名称 -->
+		<servlet-name>SpringMVC</servlet-name>
+		<!-- 设置 Servlet 的类名 -->
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 指定启动顺序，1表示该Servlet会随Servlet容器一起启动 -->
+		<init-param>
+			<!--用于标明配置文件的位置 -->
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/SpringMVC.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!-- 设置 Servlet 的映射 -->
+	<servlet-mapping>
+		<!-- 指定 Servlet 的名称 -->
+		<servlet-name>SpringMVC</servlet-name>
+		<!-- 指定 Servlet 所对应的 URL -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- 配置OpenSessionInView -->
+	<!-- <filter>
+		<filter-name>openSessionInView</filter-name>
+		<filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+		<init-param>
+			<param-name>sessionFactoryBeanName</param-name>
+			<param-value>sessionFactory</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>openSessionInView</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+
+	<!-- spring security 过滤器 -->
+	<!-- <filter> <filter-name>springSecurityFilterChain</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+		</filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 
+		<url-pattern>/*</url-pattern> </filter-mapping> -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

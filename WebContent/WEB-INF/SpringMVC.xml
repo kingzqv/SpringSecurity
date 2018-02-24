@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!--启动注解驱动的spring MVC功能,注册请求url和注解POJO类方法的映射, 自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter两个bean -->
+	<mvc:annotation-driven />
+	<!-- <mvc:annotation-driven validator="validator"/> -->
+
+	<!-- 扫描控制器,Spring会自动到指定包下扫描带有@controller @service @component等注解等类, 将他们自动实例化 -->
+	<context:component-scan base-package="com.spring"></context:component-scan>
+
+	<!--配置 页面控制器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	<!-- dataSource -->
+	<bean id="mysql"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/test?useSSL=false"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="vmwin7"></property>
+	</bean>
+
+	<!--创建Spring的SessionFactory工厂 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+
+		<!-- 注入数据源 -->
+		<property name="dataSource">
+			<ref bean="mysql" />
+		</property>
+
+		<!-- 设置Spring取那个包中查找相应的实体类，指定hibernate实体类映射文件 -->
+		<property name="packagesToScan">
+			<value>com.spring.entity</value>
+		</property>
+
+		<!-- 指定hibernate配置属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop> -->
+				 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.format_sql">false</prop>
+			</props>
+		</property>
+		<!-- <property name="mappingResources"> <list> <value>com/ssh/entity/User.hbm.xml</value> 
+			</list> </property> -->
+	</bean>
+
+	<!-- 开启HibernateTemplate，并且为其注入SessionFactory 使用HibernateTemplate不太方便的就是要获取session得通过getSessionFactory()方法获取 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- <bean id="passwordEncoder" class="com.spring.service.MyPasswordEncoder">
+		<property name="encodingId" value="bcrypt" />
+	</bean> -->
+	
+	<!-- <bean id="userDAO" class="com.spring.dao.UserDAO"> <property name="sessionFactory" 
+		ref="sessionFactory"></property> </bean> -->
+	<!-- <bean id="userService" class="com.spring.service.UserService"> <property 
+		name="userDAO" ref="userDAO"></property> </bean> -->
+
+	<!-- 资源文件：messages.properties -->
+    <!-- <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">  
+        <property name="basenames">  
+            <list>  
+                <value>/WEB-INF/message</value>  
+                <value>classpath:org/hibernate/validator/ValidationMessages</value>  
+            </list>  
+        </property>  
+        <property name="useCodeAsDefaultMessage" value="false" />  
+        <property name="defaultEncoding" value="UTF-8" />  
+        <property name="cacheSeconds" value="60" />  
+    </bean> -->
+    <!-- 验证器 -->
+    <!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">  
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator" />  
+        <property name="validationMessageSource" ref="messageSource" />  
+    </bean> -->
+    
+	<!-- 配置Spring的事务处理 -->
+	<!-- 创建事务管理器 -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="txManager" />
+
+</beans>
