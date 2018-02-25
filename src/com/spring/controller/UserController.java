@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 //import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.entity.User;
 //import com.spring.entity.Role;
 import com.spring.service.IUserService;
@@ -30,12 +30,12 @@ public class UserController {
 	private IRoleService roleService;
 
 	@RequestMapping(value = { "/list", "/" }, method = RequestMethod.GET)
-	public String list(Model model, HttpSession session) throws Exception {
+	public String list(Model model, HttpSession session) /*throws Exception*/ {
 		model.addAttribute("user", userService.findAll());
-		ObjectMapper mapper = new ObjectMapper();  
-		User u = userService.findById(2);
-	    String json = mapper.writeValueAsString(u);
-	    model.addAttribute("json", json);
+		//ObjectMapper mapper = new ObjectMapper();  
+		//User u = userService.findById(2);
+	    //String json = mapper.writeValueAsString(u);
+	    //model.addAttribute("json", json);
 		return "user/list";
 	}
 

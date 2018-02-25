@@ -13,18 +13,19 @@
 	<title>UserList</title>
 
 	<!-- Bootstrap -->
-	<link href="/statics/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/statics/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
-      <script src="/statics/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="/statics/respond/1.4.2/respond.min.js"></script>
+      <script src="<%=request.getContextPath()%>/statics/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="<%=request.getContextPath()%>/statics/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
+	<%-- <a href="<%=request.getContextPath()%>/statics/bootstrap/3.3.7/css/bootstrap.min.css">test</a><br />
 	user=<%=request.getAttribute("user")%><br /> 
-	json=<%=request.getAttribute("json")%><br />
+	json=<%=request.getAttribute("json")%><br /> --%>
 	
 	<table border="1" width="600">
 		<tr>
@@ -52,8 +53,8 @@
 	</table>
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/statics/jquery/jquery-3.3.1.min.js"></script>
+    <script src="<%=request.getContextPath()%>/statics/jquery/jquery-3.3.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/statics/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/statics/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

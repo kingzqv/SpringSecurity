@@ -61,6 +61,9 @@ roleList=<%=request.getAttribute("roleList")%><br/> --%>
 			<tr>
 				<td colspan="2"><input type="submit" value="用户更新" /></td>
 			</tr>
+			<tr>
+				<td colspan="2"><a href="../">back</a></td>
+			</tr>
 		</table>
 	</sf:form>
 </body>
