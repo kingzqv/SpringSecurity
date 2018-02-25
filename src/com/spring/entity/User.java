@@ -116,7 +116,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", state=" + state + ", roles="
-				+ roles + "]";
+		return "{\"id\":\"" + id 
+				+ "\",\"username\":\"" + username 
+				+ "\",\"password\":\"" + password 
+				+ "\",\"state\":\"" + state 
+				+ "\",\"roles\":" + roles + "}";
 	}
 }

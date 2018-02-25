@@ -8,6 +8,8 @@
 <title>UserList</title>
 </head>
 <body>
+user=<%=request.getAttribute("user")%><br/>
+json=<%=request.getAttribute("json")%><br/>
 	<table border="1" width="600">
 		<tr>
 			<th>用户ID</th>

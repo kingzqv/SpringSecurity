@@ -13,6 +13,9 @@
 	<mvc:annotation-driven />
 	<!-- <mvc:annotation-driven validator="validator"/> -->
 
+	<!-- 配置静态资源访问路径 -->
+	<mvc:resources location="/statics/" mapping="/statics/**/"/>
+
 	<!-- 扫描控制器,Spring会自动到指定包下扫描带有@controller @service @component等注解等类, 将他们自动实例化 -->
 	<context:component-scan base-package="com.spring"></context:component-scan>
 
