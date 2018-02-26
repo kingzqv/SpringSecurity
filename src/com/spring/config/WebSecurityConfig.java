@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -47,11 +48,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				//.antMatchers("/login").permitAll()//对于登录路径不进行拦截
+				.antMatchers("/login").permitAll()//对于登录路径不进行拦截
 				//.antMatchers("/").hasAnyRole("USER", "ADMIN")
 				//.antMatchers("/user/**").hasRole("ADMIN")
-				//.anyRequest().authenticated()
-				.anyRequest().permitAll()
+				.anyRequest().authenticated()
+				//.anyRequest().permitAll()
 			.and()
 				.formLogin()//配置登录页面
 				.loginPage("/login")//登录页面的访问路径
@@ -70,4 +71,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.httpBasic();
 	}
 
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		// TODO Auto-generated method stub
+		//super.configure(web);
+		//可以仿照上面一句忽略静态资源
+		web.ignoring().antMatchers("/statics/**");
+	     
+	}
+
+	
 }

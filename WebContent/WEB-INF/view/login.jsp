@@ -29,9 +29,11 @@
 <body>
 
     <div class="container">
-
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
+	  
+      <form class="form-signin" method="post">
+        <div class="form-signin-heading">
+        	登录 ${error } ${msg }
+        </div> 
         <label for="username" class="sr-only">用户名</label>
         <input type="text" id="username" name="usr" class="form-control" placeholder="用户名" required autofocus>
         <label for="password" class="sr-only">密码</label>
@@ -42,7 +44,7 @@
           </label>
         </div> -->
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
       </form>
 
     </div> <!-- /container -->
