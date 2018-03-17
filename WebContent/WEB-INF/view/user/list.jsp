@@ -23,9 +23,9 @@
     <![endif]-->
 </head>
 <body>
-	<%-- <a href="<%=request.getContextPath()%>/statics/bootstrap/3.3.7/css/bootstrap.min.css">test</a><br />
-	user=<%=request.getAttribute("user")%><br /> 
-	json=<%=request.getAttribute("json")%><br /> --%>
+	<%-- <a href="<%=request.getContextPath()%>/statics/bootstrap/3.3.7/css/bootstrap.min.css">test</a><br /> --%>
+	<%-- user=<%=request.getAttribute("user")%><br />  --%>
+	<%-- json=<%=request.getAttribute("json")%><br /> --%>
 	
 	<table border="1" width="600">
 		<tr>

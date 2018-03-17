@@ -51,8 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/login").permitAll()//对于登录路径不进行拦截
 				//.antMatchers("/").hasAnyRole("USER", "ADMIN")
 				//.antMatchers("/user/**").hasRole("ADMIN")
-				.anyRequest().authenticated()
-				//.anyRequest().permitAll()
+				//.anyRequest().authenticated()
+				.anyRequest().permitAll()
 			.and()
 				.formLogin()//配置登录页面
 				.loginPage("/login")//登录页面的访问路径
@@ -65,9 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				//.permitAll()
 				//.logoutSuccessUrl("/login?logout")
 			.and()
-			//.csrf()
-				//.and()
-				//.disable()
+				//.csrf().disable()
 				.httpBasic();
 	}
 
