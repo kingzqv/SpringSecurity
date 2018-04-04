@@ -12,6 +12,15 @@
 	<script src="<%=request.getContextPath()%>/statics/jquery/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+	<div>
+		<label>ID:</label>
+		<input type="text" id="id" name="id">
+		<label>ROLE:</label>
+		<input type="text" id="role" name="role">
+		<label>NOTE:</label>
+		<input type="text" id="note" name="note">
+	</div>
+	<br>
 	<button onclick="sendJson()">json数据交互测试</button>
 	<script type="text/javascript">
 	    function sendJson() {
@@ -23,9 +32,14 @@
 	            }  
 	        }); 
 	    	
-	    	var para = { "id": "1", "role": "admin", "note":"administrator"};
+	    	var para = { 
+	    			"id": $("#id").val(), 
+	    			"role": $("#role").val(), 
+	    			"note":$("#note").val()
+	    	};
+	    	
 	        $.ajax({
-	        	url:"http://localhost:8080/SpringSecurity/test",
+	        	url:"http://localhost:8080/SpringSecurity/json",
 	        	type:"post",
 	            data:JSON.stringify(para),
 	            contentType:"application/json;charset=utf-8",
